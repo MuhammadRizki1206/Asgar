@@ -65,31 +65,38 @@ export default function Home() {
     setStarted(true);
   };
 
-  const handleAnswer = (value: number) => {
-    if (navigator.vibrate) navigator.vibrate(50);
+const handleAnswer = (value: number) => {
+  if (navigator.vibrate) navigator.vibrate(50);
 
-    setScore(score + value);
+  setScore(score + value);
 
-    if (current + 1 < questions.length) {
-      setCurrent(current + 1);
-    } else {
-      setLoading(true);
-     setTimeout(() => {
-  setLoading(false);
-  setFinished(true);
+  if (current + 1 < questions.length) {
+    setCurrent(current + 1);
+  } else {
+    setLoading(true);
 
-  // delay sebelum jumpscare
-  setTimeout(() => {
-    setShowJumpscare(true);
+    setTimeout(() => {
+      setLoading(false);
+      setFinished(true);
 
-    // optional: play sound
-    const audio = new Audio("/jumpscare.mp3");
-    audio.play();
-  }, 1000); // 1 detik setelah hasil muncul
-}, 1800);
-    }
-  };
+      // delay sebelum jumpscare muncul
+      setTimeout(() => {
+        setShowJumpscare(true);
 
+        // sound
+        const audio = new Audio("/jumpscare.mp3");
+        audio.play();
+
+        // ⏳ auto hilang setelah 3 detik
+        setTimeout(() => {
+          setShowJumpscare(false);
+        }, 3000);
+
+      }, 1000);
+
+    }, 1800);
+  }
+};
   const getPercentage = () => {
     return Math.min(100, Math.floor((score / 20) * 100));
   };

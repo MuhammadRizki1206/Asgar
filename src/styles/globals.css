@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+
+/* ROOT */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* BODY */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Outfit", Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* UTILITIES */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .chat-height {
+    height: calc(100vh - 8.125rem);
+  }
+
+  .inbox-height {
+    height: calc(100vh - 8.125rem);
+  }
+
+  @media (min-width: 1024px) {
+    .chat-height {
+      height: calc(100vh - 5.625rem);
+    }
+
+    .inbox-height {
+      height: calc(100vh - 5.625rem);
+    }
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out;
+  }
+}
+
+/* KEYFRAMES */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes zoom {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}

@@ -90,7 +90,7 @@ const handleAnswer = (value: number) => {
         // ⏳ auto hilang setelah 3 detik
         setTimeout(() => {
           setShowJumpscare(false);
-        }, 3000);
+        }, 5000);
 
       }, 1000);
 
